@@ -22,9 +22,9 @@ jobs:
           make brew
       - name: install packages
         run: |
+          source $HOME/.zshrc
           ls s-la
           pwd
           brew
-          source $HOME/.zshrc
           make brew-base
         shell: zsh {0}
