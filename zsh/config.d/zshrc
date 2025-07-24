@@ -8,7 +8,3 @@ export PATH="/Users/k-ush/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 export PATH="/Users/k-ush/.local/bin:$PATH"
-
-eval "$(mcfly init zsh)"
-
-eval "$(starship init zsh)"
