@@ -22,6 +22,8 @@ jobs:
           make brew
       - name: install packages
         run: |
+          ls -la
+          pwd
           source $HOME/.zshrc
           make brew-base
         shell: zsh {0}

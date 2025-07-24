@@ -1,6 +1,7 @@
 # Makefile for dotfile configs
 RED        := $(shell tput setaf 1)
 NOCOLOR    := $(shell tput sgr0)
+MAKEFILE_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
 .PHONY: \
 	all docs brew \
@@ -15,13 +16,13 @@ brew:
 	$(PWD)/brew/bin/setup.sh
 
 brew-base:
-	brew bundle --verbose --file=$(PWD)/brew/config.d/base/Brewfile
+	brew bundle --verbose --file=$(MAKEFILE_DIR)/brew/config.d/base/Brewfile
 
 brew-optional:
-	brew bundle --verbose --file=$(PWD)/brew/config.d/optional/Brewfile
+	brew bundle --verbose --file=$(MAKEFILE_DIR)/brew/config.d/optional/Brewfile
 
 brew-gui:
-	brew bundle --verbose --file=$(PWD)/brew/config.d/gui/Brewfile
+	brew bundle --verbose --file=$(MAKEFILE_DIR)/brew/config.d/gui/Brewfile
 
 # =========================
 
