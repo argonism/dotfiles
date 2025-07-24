@@ -5,7 +5,7 @@ NOCOLOR    := $(shell tput sgr0)
 .PHONY: \
 	all docs brew \
 	base cli darwin gui \
-	git nvim tmux uv zsh
+	git nvim tmux uv zsh starship mise ghostty sheldon \
 
 all: clean base docs
 
@@ -22,12 +22,6 @@ brew-optional:
 
 brew-gui:
 	brew bundle --verbose --file=$(PWD)/brew/config.d/gui/Brewfile
-
-brew-himkt:
-	brew bundle --verbose --file=$(PWD)/brew/config.d/himkt/Brewfile
-
-krew-base:
-	kubectl krew install open-svc oidc-login ns images ctx hns stern neat
 
 # =========================
 
@@ -58,7 +52,6 @@ tmux: tmux_clean
 	$(PWD)/tmux/bin/setup.sh
 
 uv: uv_clean
-	curl -LsSf https://astral.sh/uv/install.sh | sh
 	$(PWD)/uv/bin/setup.sh
 
 zsh: zsh_clean
