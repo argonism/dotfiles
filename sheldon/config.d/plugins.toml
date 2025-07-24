@@ -15,3 +15,7 @@ apply = ['source']
 [plugins.zsh-syntax-highlighting]
 github = 'zsh-users/zsh-syntax-highlighting'
 apply = ['source']
+
+[plugins.mcfly]
+github = 'cantino/mcfly'
+apply = ['source']

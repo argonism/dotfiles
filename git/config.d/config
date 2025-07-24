@@ -1,6 +1,6 @@
 [user]
-	email = himkt@klis.tsukuba.ac.jp
-	name = himkt
+	email = k-ush@klis.tsukuba.ac.jp
+	name = k-ush
 
 [pull]
 	rebase = false
@@ -32,7 +32,7 @@
 [column]
 	ui = auto
 [branch]
-	sort = -committerdate
+	sort = -authordate
 [tag]
 	sort = version:refname
 [init]

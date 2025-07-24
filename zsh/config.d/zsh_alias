@@ -1,0 +1,5 @@
+alias gs='git status'
+alias ll='ls -laGh'
+alias gdc='git diff --cached'
+alias a='envchain aws'
+alias u='UV_ENV_FILE=".env" uv run'

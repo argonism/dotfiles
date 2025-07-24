@@ -51,6 +51,9 @@ nvim: nvim_clean
 sheldon: sheldon_clean
 	$(PWD)/sheldon/bin/setup.sh
 
+starship: starship_clean
+	$(PWD)/starship/bin/setup.sh
+
 tmux: tmux_clean
 	$(PWD)/tmux/bin/setup.sh
 
@@ -84,6 +87,9 @@ nvim_clean:
 
 sheldon_clean:
 	rm -rf $(HOME)/.config/sheldon
+
+starship_clean:
+	rm -rf $(HOME)/.config/starship.toml
 
 tmux_clean:
 	rm -rf $(HOME)/.tmux.conf

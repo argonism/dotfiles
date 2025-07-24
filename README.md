@@ -1,5 +1,7 @@
 ## dotfiles
 
+※  This repository is forked from https://github.com/himkt/dotfiles
+
 [![macOS test](https://github.com/himkt/dotfiles/actions/workflows/macos.yml/badge.svg)](https://github.com/himkt/dotfiles/actions/workflows/macos.yml)
 
 ## Installation
