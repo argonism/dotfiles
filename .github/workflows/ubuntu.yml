@@ -22,9 +22,10 @@ jobs:
           make brew
       - name: install packages
         run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
           source $HOME/.zshrc
-          ls s-la
+          ls -la
           pwd
-          brew
+          brew --version
           make brew-base
         shell: zsh {0}
