@@ -24,6 +24,7 @@ Darwin*)
 Linux*)
   eval `ssh-agent -s`
   export HOMEBREW_ROOT=$HOME/.linuxbrew
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   ;;
 esac
 
