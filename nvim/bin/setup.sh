@@ -1,12 +1,12 @@
 #!/bin/bash
-mkdir -p $HOME/.config/nvim
+mkdir -p $HOME/.config/nvim/
 
-config_dir="$home/.config/nvim"
+CONFIG_DIR="$HOME/.config/nvim"
 
 if [ -d $config_dir ]; then
-  echo "nvim config directory already exists at $config_dir"
+  echo "nvim config directory already exists at $CONFIG_DIR"
   echo "resetting nvim config directory"
-  rm -rf $config_dir
+  rm -rf $CONFIG_DIR
 fi
 
-ln -s $home/dotfiles/nvim/config.d/ $config_dir
+ln -s $HOME/dotfiles/nvim/config.d/ $CONFIG_DIR
