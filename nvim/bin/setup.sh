@@ -1,4 +1,6 @@
 #!/bin/bash
+mkdir -p $HOME/.config/nvim
+
 config_dir="$home/.config/nvim"
 
 if [ -d $config_dir ]; then
