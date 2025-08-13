@@ -1,6 +1,6 @@
 [user]
-  name = Kota Usuha
-  email = k-ush@klis.tsukuba.ac.jp
+  name = argonism
+  email = 44169535+argonism@users.noreply.github.com
 [commit]
   #gpgsign = true
 [core]
@@ -35,7 +35,7 @@
 [merge]
   renameLimit = 0
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+        required = true
