@@ -1,5 +1,4 @@
-dotfile '.config/nvim/coc-settings.json'
-dotfile '.config/nvim/init.vim'
+dotfile '.config/nvim'
 dotfile '.gitconfig'
 dotfile '.gitignore'
 dotfile '.peco'
