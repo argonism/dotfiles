@@ -7,4 +7,5 @@ end
 
 execute "Install homebrew packages" do
   command "brew bundle --file=#{File.expand_path('../files/Brewfile', __FILE__)}"
+  only_if "which brew"
 end
