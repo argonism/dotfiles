@@ -1,7 +1,6 @@
 [user]
-  name = Takashi Kokubun
-  email = takashikkbn@gmail.com
-  signingKey = "149033D7861A9117B2D34B8D6FFC433B12EE23DD"
+  name = Kota Usuha
+  email = k-ush@klis.tsukuba.ac.jp
 [commit]
   #gpgsign = true
 [core]
@@ -24,10 +23,7 @@
 [submodule]
   #recurse = true
 [init]
-  defaultBranch = master
-[ghq]
-  root = ~/src
-  completeUser = false
+  defaultBranch = main
 [url "git@github.com:"]
   pushInsteadOf = https://github.com/
   pushInsteadOf = git://github.com/
