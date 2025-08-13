@@ -13,7 +13,7 @@ if ! [ -f "bin/${mitamae_cache}" ]; then
       mitamae_sha256="$mitamae_linux_sha256"
       ;;
     "Darwin")
-      mitamae_bin="mitamae-x86_64-darwin"
+      mitamae_bin="mitamae-aarch64-darwin"
       mitamae_sha256="$mitamae_darwin_sha256"
       ;;
     *)
