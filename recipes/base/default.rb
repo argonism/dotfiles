@@ -9,13 +9,6 @@ directory "#{ENV['HOME']}/bin" do
   owner node[:user]
 end
 
-github_binary 'ghq' do
-  repository 'motemen/ghq'
-  version 'v0.10.0'
-  archive "ghq_#{node[:os]}_amd64.zip"
-  binary_path "ghq_#{node[:os]}_amd64/ghq"
-end
-
 github_binary 'peco' do
   repository 'peco/peco'
   version 'v0.5.10'
