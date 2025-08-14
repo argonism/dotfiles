@@ -10,5 +10,3 @@ if [[ -f ~/.zshrc.`uname` ]]; then source ~/.zshrc.`uname`; fi
 eval "$(starship init zsh)"
 
 eval "$(mcfly init zsh)"
-
-. ~/.zsh_alias
