@@ -1,0 +1,33 @@
+FROM ubuntu:22.04
+
+# Set environment variables for non-interactive installation
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=UTC
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    ca-certificates \
+    git \
+    sudo \
+    openssl \
+    tar \
+    gzip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create test user
+RUN useradd -m -s /bin/bash testuser && usermod -aG sudo testuser
+RUN echo 'testuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+# Copy dotfiles to container
+COPY . /dotfiles
+RUN chown -R testuser:testuser /dotfiles
+
+# Clean up any existing binaries that might be for wrong architecture
+RUN rm -f /dotfiles/bin/mitamae* || true
+
+USER testuser
+WORKDIR /dotfiles
+
+# Run installation steps manually with error handling, then validation
+CMD ["bash", "-c", "tests/test_linux.sh"]
