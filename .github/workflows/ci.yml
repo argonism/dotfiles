@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  test-linux:
+    name: Test on Linux
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up environment
+      run: |
+        # Install basic dependencies that might be needed
+        sudo apt-get update
+        sudo apt-get install -y curl ca-certificates git openssl tar gzip
+
+    - name: Make test script executable
+      run: chmod +x tests/test_linux.sh
+
+    - name: Run Linux tests
+      run: tests/test_linux.sh
+
+    - name: Display test results
+      if: always()
+      run: |
+        echo "Test execution completed"
+        # Show any logs or additional debugging info if needed
