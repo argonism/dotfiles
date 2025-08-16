@@ -30,5 +30,31 @@ jobs:
     - name: Display test results
       if: always()
       run: |
-        echo "Test execution completed"
+        echo "Linux test execution completed"
+        # Show any logs or additional debugging info if needed
+
+  test-darwin:
+    name: Test on macOS
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up environment
+      run: |
+        # Install basic dependencies that might be needed
+        # macOS runners usually have most tools pre-installed
+        brew --version || echo "Homebrew not available"
+
+    - name: Make test script executable
+      run: chmod +x tests/test_darwin.sh
+
+    - name: Run Darwin tests
+      run: tests/test_darwin.sh
+
+    - name: Display test results
+      if: always()
+      run: |
+        echo "Darwin test execution completed"
         # Show any logs or additional debugging info if needed
