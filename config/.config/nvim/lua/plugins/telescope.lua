@@ -5,6 +5,8 @@ return {
     local actions = require("telescope.actions")
     require("telescope").setup({
       defaults = {
+        file_ignore_patterns = { "node_modules", ".git", "dist", "build" },
+        hidden = true,
         mappings = {
           i = {
             ["<C-p>"] = actions.send_to_qflist,
@@ -15,7 +17,13 @@ return {
             ["<C-q>"] = false,
           }
         }
-      }
+      },
+      pickers = {
+        find_files = {
+          hidden = true,
+          theme = "dropdown",
+        },
+      },
     })
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })

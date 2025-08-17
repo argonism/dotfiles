@@ -19,9 +19,21 @@ return {
     keys = {
       {mode = "n", "<C-n>", "<cmd>NvimTreeToggle<CR>", desc = "NvimTreeをトグルする"},
       {mode = "n", "<C-m>", "<cmd>NvimTreeFocus<CR>", desc = "NvimTreeにフォーカス"},
+      {mode = "n", "<leader>e", "<cmd>NvimTreeFindFile<CR>", desc = "NvimTreeで現在のファイルを見つける"},
     },
     config = function()
-      require("nvim-tree").setup {}
+      require("nvim-tree").setup({
+        on_attach = function(bufnr)
+          local api = require("nvim-tree.api")
+          local function opts(desc)
+            return { desc = "NvimTree: " .. desc, buffer = bufnr, silent = true }
+          end
+          api.config.mappings.default_on_attach(bufnr)
+
+          vim.keymap.del("n", "M", { buffer = bufnr })
+          vim.keymap.set("n", "M", api.node.run.cmd, opts("Run Node Command"))
+        end
+      })
     end,
   },
   {
