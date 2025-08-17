@@ -1,5 +1,6 @@
 dotfile '.config/nvim'
 dotfile '.config/karabiner'
+dotfile '.config/sheldon'
 dotfile '.gitconfig'
 dotfile '.gitignore'
 dotfile '.peco'
