@@ -6,6 +6,7 @@ source ~/.zsh/lib/functions.zsh
 # git autocompletion
 fpath=(~/.zsh/fpath $fpath)
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+autoload -Uz compinit && compinit
 
 # Environment-local configurations
 if [[ -f ~/.zshrc.local ]]; then source ~/.zshrc.local; fi
