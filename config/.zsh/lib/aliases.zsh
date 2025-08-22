@@ -5,6 +5,7 @@ alias re="source ~/.zshrc"
 alias ..="cd .."
 
 # git
+alias g='git'
 alias gs='git status'
 alias gdc='git diff --cached'
 alias gcm='git commit -m'
