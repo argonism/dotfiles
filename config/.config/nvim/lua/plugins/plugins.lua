@@ -96,5 +96,19 @@ return {
       })
     end
   },
-  {'akinsho/git-conflict.nvim', version = "*", config = true}
+  {'akinsho/git-conflict.nvim', version = "*", config = true},
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("hlchunk").setup({
+        chunk = {
+            enable = true
+        },
+        indent = {
+            enable = true
+        }}
+    )
+    end
+  },
 }

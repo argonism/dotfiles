@@ -28,7 +28,8 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = true
 
--- CURSORLINE AND CURSORCOLUMN
+-- CLIPBOARD AND BACKUP
+vim.opt.clipboard = "unnamedplus"
 
 -- MOUSE AND SPELLCHECK
 vim.opt.mouse = "a"
