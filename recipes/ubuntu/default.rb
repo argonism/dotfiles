@@ -1,54 +1,35 @@
-dotfile '.Xmodmap'
-dotfile '.config/nvim/coc-settings.json'
-dotfile '.config/nvim/init.vim'
-dotfile '.config/solargraph/config.yml'
-dotfile '.gdbinit'
-dotfile '.gemrc'
+dotfile '.config/nvim'
+dotfile '.config/karabiner'
+dotfile '.config/sheldon'
 dotfile '.gitconfig'
 dotfile '.gitignore'
-dotfile '.gtkrc-2.0'
-dotfile '.ideavimrc'
-dotfile '.irbrc'
 dotfile '.peco'
-dotfile '.pryrc'
-dotfile '.railsrc'
 dotfile '.tmux.conf'
-dotfile '.tmux.conf.local' => '.tmux.conf.linux'
-dotfile '.wezterm.lua'
+dotfile '.tmux.conf.local' => '.tmux.conf.darwin'
 dotfile '.zsh'
 dotfile '.zshrc'
 dotfile '.zshrc.Linux'
+dotfile '.config/starship.toml'
 
-include_recipe 'systemd'
-include_recipe 'skk'
-include_recipe 'zsh'
-include_recipe 'ruby'
-include_recipe 'docker'
-
+package 'curl'
 package 'fzf'
 package 'git'
-package 'htop'
+package 'btop'
 package 'tmux'
 package 'xclip'
 
-directory "#{ENV['HOME']}/.config/systemd/user/default.target.wants" do
-  owner node[:user]
-  group node[:user]
-  mode '755'
+# Add repository for neovim
+execute 'sudo add-apt-repository --yes --update ppa:neovim-ppa/stable' do
+    not_if 'grep -r neovim-ppa /etc/apt/sources.list.d/'
+end
+package 'neovim'
+
+execute "curl -sS https://starship.rs/install.sh | sh -s -- -y" do
+    not_if 'which starship'
 end
 
-include_recipe 'ssh-agent'
-include_recipe 'gpg-agent'
-include_recipe 'ddns-update'
-include_recipe 'xremap'
-
-# For dual boot Windows
-execute 'timedatectl set-local-rtc true' do
-  only_if "timedatectl status | grep 'RTC in local TZ: no'"
+execute "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y" do
+    not_if 'which rustc'
 end
 
-# Wireguard
-#remote_file "#{ENV['HOME']}/.config/autostart/nm-applet.desktop" do
-#  owner node[:user]
-#  group node[:user]
-#end
+include_recipe 'python'

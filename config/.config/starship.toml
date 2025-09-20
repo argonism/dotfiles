@@ -1,4 +1,4 @@
-continuation_prompt = '[❯❯ ](fg:blue)'
+continuation_prompt = '[| ](fg:blue)'
 
 [directory]
 style = "fg:blue"
@@ -8,12 +8,12 @@ truncation_symbol = "..."
 truncate_to_repo = false
 
 [character]
-success_symbol = '[❯❯❯](fg:blue)'
-error_symbol = '[❯❯❯](fg:red)'
-vimcmd_symbol = '[N:❯❯❯](fg:green)'
-vimcmd_replace_one_symbol = '[N:❯❯❯](fg:green)'
-vimcmd_visual_symbol = '[N:❯❯❯](fg:green)'
- 
+success_symbol = '[❯](fg:blue)'
+error_symbol = '[❯](fg:red)'
+vimcmd_symbol = '[N:❯](fg:green)'
+vimcmd_replace_one_symbol = '[N:❯](fg:green)'
+vimcmd_visual_symbol = '[N:❯](fg:green)'
+
 [git_status]
 style = "fg:blue"
 format = '([\[$all_status$ahead_behind\]]($style))'
@@ -57,4 +57,3 @@ format = ' [${symbol}(${version} )]($style)'
 show_milliseconds = true
 format = ' [󱫌 $duration]($style)'
 #min_time = 10
-

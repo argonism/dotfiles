@@ -1,0 +1,4 @@
+# Created by `pipx` on 2025-09-20 07:25:44
+export PATH="$PATH:/home/ksh/.local/bin"
+
+eval "$(starship init zsh)"
