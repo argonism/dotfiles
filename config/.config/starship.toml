@@ -57,3 +57,10 @@ format = ' [${symbol}(${version} )]($style)'
 show_milliseconds = true
 format = ' [󱫌 $duration]($style)'
 #min_time = 10
+
+
+[hostname]
+disabled = true
+
+[username]
+disabled = true
