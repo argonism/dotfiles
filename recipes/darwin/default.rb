@@ -9,6 +9,7 @@ dotfile '.tmux.conf.local' => '.tmux.conf.darwin'
 dotfile '.zsh'
 dotfile '.zshrc'
 dotfile '.zshrc.darwin'
+dotfile '.starship.toml'
 
 package 'git'
 
