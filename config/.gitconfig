@@ -4,7 +4,7 @@
 [commit]
   #gpgsign = true
 [core]
-  excludesFile = ~/.gitignore
+  excludesFile = $HOME/.gitignore
   editor = nvim
   filemode = true
   #commentChar = ">"

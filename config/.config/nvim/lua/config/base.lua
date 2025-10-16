@@ -41,3 +41,6 @@ if vim.fn.has("termguicolors") == 1 then
   vim.opt.termguicolors = true
 end
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
+
+-- HOVER
+vim.opt.updatetime = 300
