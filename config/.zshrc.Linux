@@ -2,3 +2,7 @@
 export PATH="$PATH:/home/ksh/.local/bin"
 
 eval "$(starship init zsh)"
+
+export PATH=/usr/local/cuda:/usr/local/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
