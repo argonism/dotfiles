@@ -14,6 +14,21 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, opts)
   vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
+
+  -- Enable document highlight
+  if client.server_capabilities.documentHighlightProvider then
+    vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+    vim.api.nvim_create_autocmd("CursorHold", {
+      group = "lsp_document_highlight",
+      buffer = bufnr,
+      callback = vim.lsp.buf.document_highlight,
+    })
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      group = "lsp_document_highlight",
+      buffer = bufnr,
+      callback = vim.lsp.buf.clear_references,
+    })
+  end
 end
 
 -- Function to check if a floating dialog exists and if not
