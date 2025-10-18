@@ -8,12 +8,10 @@ ENV TZ=UTC
 RUN apt-get update && apt-get install -y \
     curl \
     ca-certificates \
-    git \
     sudo \
     openssl \
     tar \
-    gzip \
-    && rm -rf /var/lib/apt/lists/*
+    software-properties-common
 
 # Create test user
 RUN useradd -m -s /bin/bash testuser && usermod -aG sudo testuser

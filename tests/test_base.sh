@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eu
+
 FAILED_COUNT=0
 
 passed() { echo -e "\033[32m$*\033[0m"; }
@@ -26,6 +28,17 @@ function test_symlink() {
         fi
     else
         failed "$source_path does not exist"
+        FAILED_COUNT=$((FAILED_COUNT + 1))
+    fi
+}
+
+function test_command_exists() {
+    local cmd="$1"
+
+    if which $cmd > /dev/null 2>&1; then
+        passed "$cmd exists"
+    else
+        failed "$cmd does not exist"
         FAILED_COUNT=$((FAILED_COUNT + 1))
     fi
 }
