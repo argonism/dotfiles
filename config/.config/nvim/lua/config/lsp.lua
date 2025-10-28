@@ -13,7 +13,19 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
   vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, opts)
-  vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
+  vim.keymap.set('n', '<leader>d', function()
+    vim.diagnostic.open_float({
+      focusable = false,
+      close_events = { "CursorMoved", "BufHidden", "InsertCharPre" },
+      border = 'rounded',
+      source = 'always',
+      prefix = ' ',
+      scope = 'cursor',
+    })
+  end, opts)
+  vim.keymap.set('n', '<leader>t', function()
+    vim.lsp.buf.hover()
+  end, opts)
 
   -- Enable document highlight
   if client.server_capabilities.documentHighlightProvider then

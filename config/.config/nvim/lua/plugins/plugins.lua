@@ -6,6 +6,13 @@ return {
     config = function()
       -- load the colorscheme here
       vim.cmd([[colorscheme tokyonight-night]])
+      
+      -- コメントの色をより明るく
+      vim.api.nvim_set_hl(0, "Comment", { fg = "#7aa2f7", italic = true })
+      
+      -- 行番号の色を変更
+      vim.api.nvim_set_hl(0, "LineNr", { fg = "#565f89" })
+      vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#f7768e", bold = true })
     end,
   },
   {
