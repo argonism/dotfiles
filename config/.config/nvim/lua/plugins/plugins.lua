@@ -13,6 +13,10 @@ return {
       -- 行番号の色を変更
       vim.api.nvim_set_hl(0, "LineNr", { fg = "#565f89" })
       vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#f7768e", bold = true })
+      
+      -- unreachableコードの色を変更
+      vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = "#565f89", italic = true })
+      vim.api.nvim_set_hl(0, "@lsp.type.unreachable", { fg = "#565f89", italic = true })
     end,
   },
   {
