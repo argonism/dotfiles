@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  ubuntu:
+    build:
+      context: .
+      dockerfile: Dockerfile.test.linux
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/mnt/dotfiles
