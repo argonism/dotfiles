@@ -6,14 +6,14 @@ return {
     config = function()
       -- load the colorscheme here
       vim.cmd([[colorscheme tokyonight-night]])
-      
+
       -- コメントの色をより明るく
       vim.api.nvim_set_hl(0, "Comment", { fg = "#7aa2f7", italic = true })
-      
+
       -- 行番号の色を変更
       vim.api.nvim_set_hl(0, "LineNr", { fg = "#565f89" })
       vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#f7768e", bold = true })
-      
+
       -- unreachableコードの色を変更
       vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = "#565f89", italic = true })
       vim.api.nvim_set_hl(0, "@lsp.type.unreachable", { fg = "#565f89", italic = true })
@@ -175,5 +175,15 @@ return {
   {
     "folke/snacks.nvim",
     ---@type snacks.Config
+  },
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+
+    -- For blink.cmp's completion
+    -- source
+    dependencies = {
+      "saghen/blink.cmp"
+    },
   },
 }
