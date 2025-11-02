@@ -1,1 +1,3 @@
 eval "$(sheldon source)"
+
+alias claude="/Users/k-ush/.claude/local/claude"
