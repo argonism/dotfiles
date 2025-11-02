@@ -1,3 +1,4 @@
 eval "$(sheldon source)"
+eval "$(starship init bash)"
 
 alias claude="/Users/k-ush/.claude/local/claude"
