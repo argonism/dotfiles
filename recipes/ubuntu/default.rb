@@ -9,7 +9,7 @@ dotfile '.tmux.conf.local' => '.tmux.conf.darwin'
 dotfile '.zsh'
 dotfile '.zshrc'
 dotfile '.zshrc.Linux'
-dotfile '.config/starship.toml'
+dotfile '.starship.toml'
 
 package 'curl'
 package 'fzf'
