@@ -186,4 +186,10 @@ return {
       "saghen/blink.cmp"
     },
   },
+  {
+    "karb94/neoscroll.nvim",
+    opts = {
+      duration_multiplier = 0.5
+    },
+  },
 }
