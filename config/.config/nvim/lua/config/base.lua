@@ -2,6 +2,12 @@ vim.scriptencoding = "utf-8"
 
 vim.cmd("language en_US")
 
+-- Auto reload files changed outside of Neovim
+vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter" }, {
+  pattern = "*",
+  command = "checktime",
+})
+
 -- LINE NUMBER
 vim.opt.number = true
 
@@ -29,7 +35,7 @@ vim.opt.smartcase = true
 vim.opt.hlsearch = true
 
 -- CLIPBOARD AND BACKUP
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard:append({ "unnamed", "unnamedplus" })
 
 -- MOUSE AND SPELLCHECK
 vim.opt.mouse = "a"
