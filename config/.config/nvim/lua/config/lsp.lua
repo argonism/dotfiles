@@ -80,43 +80,55 @@ vim.diagnostic.config({
   severity_sort = false,
 })
 
-lspconfig.ts_ls.setup({
-  on_attach = on_attach,
-})
+-- TypeScript/JavaScript LSP
+if vim.fn.executable('typescript-language-server') == 1 then
+  lspconfig.ts_ls.setup({
+    on_attach = on_attach,
+  })
+end
 
-lspconfig.html.setup({
-  on_attach = on_attach,
-})
+-- HTML LSP
+if vim.fn.executable('vscode-html-language-server') == 1 then
+  lspconfig.html.setup({
+    on_attach = on_attach,
+  })
+end
 
-lspconfig.pyright.setup({
-  on_attach = on_attach,
-  settings = {
-    python = {
-      analysis = {
-        autoSearchPaths = true,
-        useLibraryCodeForTypes = true,
-        diagnosticMode = 'openFilesOnly',
+-- Python LSP
+if vim.fn.executable('pyright') == 1 then
+  lspconfig.pyright.setup({
+    on_attach = on_attach,
+    settings = {
+      python = {
+        analysis = {
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+          diagnosticMode = 'openFilesOnly',
+        },
+      },
+    }
+  })
+end
+
+-- Lua LSP
+if vim.fn.executable('lua-language-server') == 1 then
+  lspconfig.lua_ls.setup({
+    on_attach = on_attach,
+    settings = {
+      Lua = {
+        runtime = {
+          version = 'LuaJIT',
+        },
+        diagnostics = {
+          globals = {'vim'},
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        telemetry = {
+          enable = false,
+        },
       },
     },
-  }
-})
-
-lspconfig.lua_ls.setup({
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        globals = {'vim'},
-      },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-})
+  })
+end
