@@ -23,6 +23,10 @@ return {
           hidden = true,
           theme = "dropdown",
         },
+        live_grep = {
+          hidden = true,
+          theme = "dropdown",
+        },
       },
     })
     local builtin = require('telescope.builtin')
