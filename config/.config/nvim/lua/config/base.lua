@@ -1,6 +1,6 @@
 vim.scriptencoding = "utf-8"
 
-vim.cmd("language en_US")
+vim.cmd("language en_US.UTF-8")
 
 -- Auto reload files changed outside of Neovim
 vim.api.nvim_create_autocmd({ "WinEnter", "FocusGained", "BufEnter" }, {
