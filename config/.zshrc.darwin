@@ -1,4 +1,2 @@
 eval "$(sheldon source)"
 eval "$(starship init zsh)"
-
-alias claude="/Users/k-ush/.claude/local/claude"
