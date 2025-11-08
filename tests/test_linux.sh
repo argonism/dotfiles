@@ -7,7 +7,7 @@ dotfile_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 header "Test Linux"
 
 test_symlink "${HOME}/.config/nvim"
-test_symlink "${HOME}/.config/starship.toml"
+test_symlink "${HOME}/.starship.toml"
 test_symlink "${HOME}/.tmux.conf"
 test_symlink "${HOME}/.tmux.conf.local"
 test_symlink "${HOME}/.zshrc"
