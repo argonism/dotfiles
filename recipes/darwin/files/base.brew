@@ -10,5 +10,6 @@ brew 'neovim'
 brew 'btop'
 brew 'mise'
 brew 'tmux'
+brew 'uv'
 
 brew 'lua-language-server'
