@@ -1,6 +1,13 @@
 -- Python LSP configuration with priority order
 local python_lsp_priority = {
   {
+    name = 'ty',
+    filetypes = { 'python' },
+    root_markers = { 'ty.toml', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' },
+    cmd = { 'ty', 'server' },
+    settings = {}
+  },
+  {
     name = 'pyright',
     cmd = { 'pyright-langserver', '--stdio' },
     settings = {
@@ -13,42 +20,23 @@ local python_lsp_priority = {
       },
     }
   },
-  {
-    name = 'pylsp',
-    cmd = { 'pylsp' },
-    settings = {
-      pylsp = {
-        plugins = {
-          pycodestyle = { enabled = false },
-          mccabe = { enabled = false },
-          pyflakes = { enabled = false },
-          flake8 = { enabled = true },
-        },
-      },
-    }
-  },
-  {
-    name = 'jedi_language_server',
-    cmd = { 'jedi-language-server' },
-    settings = {}
-  }
 }
 
 -- Find and return the first available Python LSP
 local function get_python_lsp()
   for _, lsp in ipairs(python_lsp_priority) do
-    local cmd = lsp.cmd[1]
-    if vim.fn.executable(cmd) == 1 then
+    -- Check if cmd exists and is executable, or if no cmd (use default)
+    if not lsp.cmd or vim.fn.executable(lsp.cmd[1]) == 1 then
       return {
         name = lsp.name,
         cmd = lsp.cmd,
         filetypes = { 'python' },
-        root_markers = { 
-          'pyproject.toml', 
-          'setup.py', 
-          'setup.cfg', 
-          'requirements.txt', 
-          'Pipfile', 
+        root_markers = {
+          'pyproject.toml',
+          'setup.py',
+          'setup.cfg',
+          'requirements.txt',
+          'Pipfile',
           'pyrightconfig.json',
           '.git'
         },

@@ -1,3 +1,3 @@
 require("config.base")
 require("config.lazy")
--- require("lsp")
+require("config.lsp")

@@ -1,5 +1,4 @@
--- Suppress deprecation warning for lspconfig
-local lspconfig = require('lspconfig')
+-- LSP configuration for Neovim 0.11+
 
 local on_attach = function(client, bufnr)
   local opts = { noremap = true, silent = true, buffer = bufnr }
@@ -124,14 +123,36 @@ if vim.fn.isdirectory(lsp_dir) == 1 then
     if file:match('%.lua$') then
       local filepath = lsp_dir .. '/' .. file
       local config = dofile(filepath)
-      if config and config.name and config.cmd and vim.fn.executable(config.cmd[1]) == 1 then
-        lspconfig[config.name].setup({
-          cmd = config.cmd,
-          filetypes = config.filetypes,
-          root_dir = lspconfig.util.root_pattern(unpack(config.root_markers)),
-          settings = config.settings,
+      if config and config.name then
+        local setup_config = {
           on_attach = on_attach,
-        })
+        }
+        
+        -- Override defaults with provided configs
+        if config.cmd then
+          setup_config.cmd = config.cmd
+        end
+        
+        if config.filetypes then
+          setup_config.filetypes = config.filetypes
+        end
+        
+        if config.root_markers then
+          setup_config.root_dir = function(fname)
+            local found = vim.fs.find(config.root_markers, { 
+              path = tostring(fname), 
+              upward = true 
+            })
+            return found[1] and vim.fs.dirname(found[1]) or nil
+          end
+        end
+        
+        if config.settings then
+          setup_config.settings = config.settings
+        end
+        
+        vim.lsp.config(config.name, setup_config)
+        vim.lsp.enable(config.name)
       end
     end
   end
