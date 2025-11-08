@@ -14,3 +14,4 @@ dotfile '.starship.toml'
 package 'git'
 
 include_recipe 'gpg-agent'
+include_recipe 'brew'
