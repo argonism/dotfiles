@@ -1,13 +1,13 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    -- event = { "BufReadPre", "BufNewFile", "BufWritePre" },
+    event = { "BufReadPre", "BufNewFile", "BufWritePre" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp", -- LSPと補完の連携用（オプション）
     },
-    config = function()
-      require("config.lsp")
-    end,
+    -- config = function()
+    --   require("config.lsp")
+    -- end,
   },
   {
     "hrsh7th/nvim-cmp",
