@@ -1,7 +1,7 @@
 return {
   {
     "folke/tokyonight.nvim",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       -- load the colorscheme here
@@ -44,9 +44,9 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     keys = {
-      {mode = "n", "<C-n>", "<cmd>NvimTreeToggle<CR>", desc = "NvimTreeをトグルする"},
-      {mode = "n", "<C-m>", "<cmd>NvimTreeFocus<CR>", desc = "NvimTreeにフォーカス"},
-      {mode = "n", "<leader>e", "<cmd>NvimTreeFindFile<CR>", desc = "NvimTreeで現在のファイルを見つける"},
+      { mode = "n", "<C-n>", "<cmd>NvimTreeToggle<CR>", desc = "NvimTreeをトグルする" },
+      { mode = "n", "<C-m>", "<cmd>NvimTreeFocus<CR>", desc = "NvimTreeにフォーカス" },
+      { mode = "n", "<leader>e", "<cmd>NvimTreeFindFile<CR>", desc = "NvimTreeで現在のファイルを見つける" },
     },
     config = function()
       require("nvim-tree").setup({
@@ -68,15 +68,15 @@ return {
     'akinsho/bufferline.nvim',
     version = "*",
     dependencies = 'nvim-tree/nvim-web-devicons',
-    config = function ()
+    config = function()
       vim.opt.termguicolors = true
-      require("bufferline").setup{}
+      require("bufferline").setup {}
     end
   },
   {
     'numToStr/Comment.nvim',
   },
-	{
+  {
     'echasnovski/mini.surround',
     version = '*',
     config = function()
@@ -97,26 +97,27 @@ return {
     config = function()
       require("noice").setup({
         presets = {
-          bottom_search = true, -- use a classic bottom cmdline for search
-          command_palette = true, -- position the cmdline and popupmenu together
+          bottom_search = true,         -- use a classic bottom cmdline for search
+          command_palette = true,       -- position the cmdline and popupmenu together
           long_message_to_split = true, -- long messages will be sent to a split
         },
       })
     end
   },
-  {'akinsho/git-conflict.nvim', version = "*", config = true},
+  { 'akinsho/git-conflict.nvim', version = "*", config = true },
   {
     "shellRaining/hlchunk.nvim",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("hlchunk").setup({
         chunk = {
-            enable = true
+          enable = true
         },
         indent = {
-            enable = true
-        }}
-    )
+          enable = true
+        }
+      }
+      )
     end
   },
   {
@@ -191,5 +192,27 @@ return {
     opts = {
       duration_multiplier = 0.5
     },
+  },
+  {
+    "hat0uma/csvview.nvim",
+    ---@module "csvview"
+    ---@type CsvView.Options
+    opts = {
+      parser = { comments = { "#", "//" } },
+      keymaps = {
+        -- Text objects for selecting fields
+        textobject_field_inner = { "if", mode = { "o", "x" } },
+        textobject_field_outer = { "af", mode = { "o", "x" } },
+        -- Excel-like navigation:
+        -- Use <Tab> and <S-Tab> to move horizontally between fields.
+        -- Use <Enter> and <S-Enter> to move vertically between rows and place the cursor at the end of the field.
+        -- Note: In terminals, you may need to enable CSI-u mode to use <S-Tab> and <S-Enter>.
+        jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
+        jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
+        jump_next_row = { "<Enter>", mode = { "n", "v" } },
+        jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
+      },
+    },
+    cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
   },
 }
