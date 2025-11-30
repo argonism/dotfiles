@@ -13,7 +13,8 @@ alias gk='git checkout'
 alias ga='git add'
 
 # python
-alias u='UV_ENV_FILE=".env" uv run'
+alias ue='UV_ENV_FILE=".env" uv run'
+alias u='uv run'
 
 # misc
 alias ll='ls -laGh'
