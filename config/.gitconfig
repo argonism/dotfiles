@@ -1,5 +1,5 @@
 [user]
-  name = argonism
+	name = argonism
   email = 44169535+argonism@users.noreply.github.com
 [commit]
   #gpgsign = true
@@ -39,3 +39,9 @@
         smudge = git-lfs smudge -- %f
         process = git-lfs filter-process
         required = true
+[alias]
+	pl = pull
+	ps = push
+	c = checkout
+	df = diff
+	dfs = diff --staged
