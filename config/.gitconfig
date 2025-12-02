@@ -15,7 +15,7 @@
 [push]
 	default = simple
 [pull]
-  rebase = true
+  rebase = false
 [branch]
 	autoSetupRebase = always
 [blame]
