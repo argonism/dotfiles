@@ -9,3 +9,8 @@ execute "Install homebrew packages" do
   command "brew bundle --file=#{File.expand_path('../files/base.brew', __FILE__)}"
   only_if "which brew"
 end
+
+execute "Install homebrew cask packages" do
+  command "brew bundle --file=#{File.expand_path('../files/gui.brew', __FILE__)}"
+  only_if "which brew"
+end
