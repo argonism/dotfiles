@@ -18,3 +18,4 @@ alias u='uv run'
 
 # misc
 alias ll='ls -laGh'
+alias ph='phantom'
