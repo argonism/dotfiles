@@ -15,10 +15,16 @@ vim.opt.number = true
 vim.g.mapleader = " "
 vim.api.nvim_set_keymap("i", "jj", "<esc>", { noremap = true })
 vim.api.nvim_set_keymap("i", "kk", "<esc>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-h>", ":bprev<CR>", {noremap = true })
-vim.api.nvim_set_keymap("n", "<C-l>", ":bnext<CR>", {noremap = true })
-vim.api.nvim_set_keymap("n", "<C-c>", ":bd<CR>", {noremap = true })
+vim.api.nvim_set_keymap("n", "<C-h>", ":BufferLineCyclePrev<CR>", {noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-l>", ":BufferLineCycleNext<CR>", {noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-c>", "", {
+  noremap = true, silent = true,
+  callback = function() require("mini.bufremove").delete(0, false) end,
+})
 vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", {noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>b", ":BufferLinePick<CR>", {noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })
 
 -- INDENTATION AND FORMATTING
 vim.opt.tabstop = 2

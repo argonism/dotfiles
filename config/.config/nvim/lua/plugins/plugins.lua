@@ -70,7 +70,14 @@ return {
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
       vim.opt.termguicolors = true
-      require("bufferline").setup {}
+      require("bufferline").setup {
+        options = {
+          offsets = {
+            { filetype = "NvimTree", text = "File Explorer", highlight = "Directory", separator = true },
+          },
+          diagnostics = "nvim_lsp",
+        },
+      }
     end
   },
   {
@@ -83,6 +90,13 @@ return {
       require('mini.surround').setup()
     end,
   },
+  {
+    'echasnovski/mini.bufremove',
+    version = '*',
+    config = function()
+      require('mini.bufremove').setup()
+    end,
+  },
   { 'github/copilot.vim' },
   {
     'HiPhish/rainbow-delimiters.nvim',
@@ -93,6 +107,9 @@ return {
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
+    },
+    keys = {
+      { "<leader>nd", "<cmd>Noice dismiss<CR>", desc = "Dismiss notifications" },
     },
     config = function()
       require("noice").setup({
@@ -178,14 +195,13 @@ return {
     ---@type snacks.Config
   },
   {
-    "OXY2DEV/markview.nvim",
-    lazy = false,
-
-    -- For blink.cmp's completion
-    -- source
-    dependencies = {
-      "saghen/blink.cmp"
-    },
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
   },
   {
     "karb94/neoscroll.nvim",
