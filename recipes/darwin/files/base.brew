@@ -11,5 +11,6 @@ brew 'btop'
 brew 'mise'
 brew 'tmux'
 brew 'uv'
+brew 'phantom'
 
 brew 'lua-language-server'

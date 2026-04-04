@@ -129,3 +129,10 @@ function gwc() {
     cd "$selected"
   fi
 }
+
+# ghn - GitHub Notifications (ci_activity filtered)
+# Usage: ghn
+function ghn() {
+  gh api /notifications --paginate \
+    | jq -r '.[] | select(.reason != "ci_activity") | "\(.repository.full_name)\t\(.reason)\t\(.subject.title)"'
+}

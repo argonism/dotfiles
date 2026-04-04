@@ -45,3 +45,9 @@
 	c = checkout
 	df = diff
 	dfs = diff --staged
+  rsr = restore
+  rsrs = restore --staged
+  sw = switch
+[phantom]
+	ai = claude
+	worktreesDirectory = ../misedoko-worktrees
