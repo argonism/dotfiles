@@ -16,6 +16,16 @@ if [[ -f ~/.zshrc.`uname` ]]; then source ~/.zshrc.`uname`; fi
 export PATH="/Users/k-ush/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
+# Fix tmux soft-wrap copy issue
+autoload -U add-zsh-hook
+tmux_fix_soft_wrap_selections() {
+  if [[ -n "$TMUX" ]]; then
+    tmux refresh
+  fi
+}
+add-zsh-hook precmd tmux_fix_soft_wrap_selections
+
 if (which zprof > /dev/null) ;then
   # zprof | less
 fi
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
