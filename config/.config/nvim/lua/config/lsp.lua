@@ -5,6 +5,7 @@ vim.lsp.enable({
   -- 他の言語サーバーの設定
   -- "gopls",
   "pyright",
+  "rust_analyzer",
   "tsserver",
 })
 
