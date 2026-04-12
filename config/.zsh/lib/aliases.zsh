@@ -16,6 +16,9 @@ alias ga='git add'
 alias ue='UV_ENV_FILE=".env" uv run'
 alias u='uv run'
 
+# Rust
+alias c='cargo'
+
 # misc
 alias ll='ls -laGh'
 alias ph='phantom'
