@@ -46,7 +46,7 @@ vim.opt.clipboard:append({ "unnamed", "unnamedplus" })
 
 -- MOUSE AND SPELLCHECK
 vim.opt.mouse = "a"
-vim.opt.spell = true
+vim.opt.spell = false
 vim.opt.spelllang = { "en", "cjk" }
 
 -- ENABLE TRUE COLOR SUPPORT
