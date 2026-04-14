@@ -39,4 +39,9 @@ execute "curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/cra
     not_if "which sheldon"
 end
 
+# atuin
+execute "curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh" do
+    not_if "which atuin"
+end
+
 include_recipe 'python'
