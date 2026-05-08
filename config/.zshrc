@@ -29,3 +29,5 @@ if (which zprof > /dev/null) ;then
   # zprof | less
 fi
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
