@@ -23,7 +23,6 @@ vim.api.nvim_set_keymap("n", "<C-c>", "", {
   callback = function() require("mini.bufremove").delete(0, false) end,
 })
 vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>b", ":BufferLinePick<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })
 
@@ -56,4 +55,4 @@ end
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 
 -- HOVER
-vim.opt.updatetime = 300
+vim.opt.updatetime = 500
