@@ -28,9 +28,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     if client:supports_method("textDocument/hover") then
-      vim.keymap.set("n", "<leader>k",
+      vim.keymap.set("n", "K",
         function() vim.lsp.buf.hover({ border = "single" }) end,
         { buffer = buf, desc = "Show hover documentation" })
+    end
+
+    if client:supports_method("textDocument/documentHighlight") then
+      vim.keymap.set("n", "<leader>k", function()
+        if vim.b.lsp_highlight_active then
+          vim.lsp.buf.clear_references()
+          vim.b.lsp_highlight_active = false
+        else
+          vim.lsp.buf.document_highlight()
+          vim.b.lsp_highlight_active = true
+        end
+      end, { buffer = buf, desc = "Toggle reference highlight" })
     end
 
     -- if client:supports_method("textDocument/completion") then
@@ -74,17 +86,34 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 vim.api.nvim_create_autocmd("CursorHold", {
   group = vim.api.nvim_create_augroup("diagnostic", {}),
-  callback = function(args)
-    vim.diagnostic.open_float({
-      scope = "cursor",
-      focusable = false,
-      close_events = {
-        "CursorMoved",
-        "CursorMovedI",
-        "BufHidden",
-        "InsertCharPre",
-        "WinLeave",
-      },
-    })
+  callback = function()
+    -- Skip if a floating window is already open
+    for _, winid in ipairs(vim.api.nvim_list_wins()) do
+      if vim.api.nvim_win_get_config(winid).relative ~= "" then
+        return
+      end
+    end
+
+    local lnum = vim.fn.line(".") - 1
+    local diags = vim.diagnostic.get(0, { lnum = lnum })
+    if #diags > 0 then
+      vim.diagnostic.open_float({
+        scope = "cursor",
+        focusable = false,
+        close_events = {
+          "CursorMoved",
+          "CursorMovedI",
+          "BufHidden",
+          "InsertCharPre",
+          "WinLeave",
+        },
+      })
+      return
+    end
+
+    local clients = vim.lsp.get_clients({ bufnr = 0, method = "textDocument/hover" })
+    if #clients > 0 then
+      vim.lsp.buf.hover({ border = "single", focusable = false })
+    end
   end,
 })
