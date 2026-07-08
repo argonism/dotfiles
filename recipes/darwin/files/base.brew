@@ -7,6 +7,7 @@ brew 'sheldon'
 brew 'tree'
 brew 'gnu-sed'
 brew 'neovim'
+brew 'tree-sitter-cli' # nvim-treesitter (main branch) がパーサをビルドするのに必要な CLI
 brew 'btop'
 brew 'mise'
 brew 'tmux'

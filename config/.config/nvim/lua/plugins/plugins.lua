@@ -21,18 +21,27 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = { "lua", "python", "javascript", "typescript", "html", "css", "json", "yaml", "rust", "toml" },
-        auto_install = true,
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false,
-        },
-        indent = {
-          enable = true,
-        },
+      -- main ブランチ(rewrite)は configs.setup / ensure_installed / highlight.enable を廃止。
+      -- パーサは install() で明示導入し、ハイライトと indent は FileType autocmd で有効化する。
+      -- lua/vim/vimdoc/markdown/markdown_inline/c/query は Neovim 本体に組み込み済み
+      -- (パーサ+query 同梱)。ここで二重導入すると古い site パーサが同梱 query と衝突するため除外。
+      require("nvim-treesitter").install({
+        "python", "javascript", "typescript", "tsx",
+        "html", "css", "json", "yaml", "rust", "toml", "bash",
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        desc = "treesitter ハイライトと indent を有効化",
+        callback = function(ev)
+          -- パーサ未導入の filetype では start が失敗するので握りつぶす(旧 auto_install 相当は無し)
+          if pcall(vim.treesitter.start, ev.buf) then
+            vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
+        end,
       })
     end,
   },
