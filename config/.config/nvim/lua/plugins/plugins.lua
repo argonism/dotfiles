@@ -1,22 +1,16 @@
 return {
   {
-    "folke/tokyonight.nvim",
+    "ellisonleao/gruvbox.nvim",
     lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
+      vim.o.background = "light"
+      require("gruvbox").setup({
+        contrast = "hard",
+      })
+
       -- load the colorscheme here
-      vim.cmd([[colorscheme tokyonight-night]])
-
-      -- コメントの色をより明るく
-      vim.api.nvim_set_hl(0, "Comment", { fg = "#7aa2f7", italic = true })
-
-      -- 行番号の色を変更
-      vim.api.nvim_set_hl(0, "LineNr", { fg = "#565f89" })
-      vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#f7768e", bold = true })
-
-      -- unreachableコードの色を変更
-      vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = "#565f89", italic = true })
-      vim.api.nvim_set_hl(0, "@lsp.type.unreachable", { fg = "#565f89", italic = true })
+      vim.cmd([[colorscheme gruvbox]])
     end,
   },
   {
