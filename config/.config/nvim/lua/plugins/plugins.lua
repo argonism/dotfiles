@@ -121,6 +121,12 @@ return {
           command_palette = true,       -- position the cmdline and popupmenu together
           long_message_to_split = true, -- long messages will be sent to a split
         },
+        messages = {
+          view = "mini", -- 通知をnvim-notifyの大きいポップアップではなく右下の控えめな表示に
+        },
+        notify = {
+          view = "mini", -- vim.notify() 経由の通知も同様にmini表示
+        },
       })
     end
   },
