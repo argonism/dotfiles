@@ -1,5 +1,5 @@
-# copy
+# copy (stay in copy-mode after yanking so the scroll position is kept)
 bind-key -T copy-mode-vi v send -X begin-selection
-bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
-bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
+bind-key -T copy-mode-vi y send-keys -X copy-pipe "pbcopy"
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-no-clear "pbcopy"
 bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "pbcopy"
