@@ -2,6 +2,7 @@ bindkey -v
 
 source ~/.zsh/lib/aliases.zsh
 source ~/.zsh/lib/functions.zsh
+source ~/.zsh/lib/1password-envs.zsh
 
 # git autocompletion
 fpath=(~/.zsh/fpath $fpath)
