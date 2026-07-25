@@ -1,3 +1,8 @@
 bin/mitamae*
 *.swp
 config/.zsh/bundle/
+
+# herdr: ~/.config/herdr はディレクトリごと symlink のため runtime ファイルが混入する
+# config.toml のみ追跡する
+config/.config/herdr/*
+!config/.config/herdr/config.toml
