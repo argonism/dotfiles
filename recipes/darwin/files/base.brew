@@ -16,3 +16,4 @@ brew 'phantom'
 brew 'atuin'
 
 brew 'lua-language-server'
+brew 'glow' # glow.nvim (nvim 内 float で markdown をレンダリング表示) のバックエンド

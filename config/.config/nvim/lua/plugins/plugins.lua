@@ -204,25 +204,11 @@ return {
     ---@type snacks.Config
   },
   {
-    "OXY2DEV/markview.nvim",
-    ft = { "markdown", "rmd", "quarto" },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-    opts = {
-      preview = {
-        modes = { "n", "no", "c" },
-        hybrid_modes = { "i" },
-        linewise_hybrid_mode = true,
-      },
-    },
-  },
-  {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
+    -- mkdp#util#install() は prebuilt バイナリ頼みで Apple Silicon だと落ちるため npm install で入れる
+    build = "cd app && npm install",
     keys = {
       { "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", desc = "Toggle Markdown Preview" },
     },
@@ -254,5 +240,31 @@ return {
       },
     },
     cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+  },
+  {
+    "ellisonleao/glow.nvim",
+    cmd = "Glow",
+    ft = { "markdown" },
+    keys = {
+      { "<leader>mg", "<cmd>Glow<CR>", desc = "Glow で Markdown を float プレビュー" },
+    },
+    config = function()
+      require("glow").setup({
+        border = "rounded",
+        width_ratio = 0.85,
+        height_ratio = 0.85,
+      })
+      -- glow.nvim は vim.loop.spawn(パイプ=非TTY)で glow を起動する glow 1.5.1 時代の
+      -- 設計のままで、glow 2.x は非TTY 出力だと色を全て落とすため素のままでは無色になる。
+      -- setup が定義した Glow コマンドを同一シグネチャで上書きし、実行中のみ強制カラーにする。
+      vim.api.nvim_create_user_command("Glow", function(opts)
+        local prev_force, prev_colorterm = vim.env.CLICOLOR_FORCE, vim.env.COLORTERM
+        vim.env.CLICOLOR_FORCE = "1"
+        vim.env.COLORTERM = "truecolor"
+        require("glow").execute(opts)
+        vim.env.CLICOLOR_FORCE = prev_force
+        vim.env.COLORTERM = prev_colorterm
+      end, { complete = "file", nargs = "?", bang = true })
+    end,
   },
 }
