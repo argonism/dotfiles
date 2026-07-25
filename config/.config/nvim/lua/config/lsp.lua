@@ -111,9 +111,5 @@ vim.api.nvim_create_autocmd("CursorHold", {
       return
     end
 
-    local clients = vim.lsp.get_clients({ bufnr = 0, method = "textDocument/hover" })
-    if #clients > 0 then
-      vim.lsp.buf.hover({ border = "single", focusable = false })
-    end
   end,
 })
