@@ -6,3 +6,6 @@ config/.zsh/bundle/
 # config.toml のみ追跡する
 config/.config/herdr/*
 !config/.config/herdr/config.toml
+
+# Machine-local nix-darwin values
+nix/local.nix

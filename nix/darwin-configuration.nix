@@ -1,11 +1,11 @@
-{ ... }:
+{ username, ... }:
 
 {
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   # These settings target the existing local account.
-  system.primaryUser = "k-ush";
-  users.users.k-ush.home = "/Users/k-ush";
+  system.primaryUser = username;
+  users.users.${username}.home = "/Users/${username}";
 
   # Keep the NixOS/nix-installer installation as-is. nix-darwin manages
   # macOS, but does not replace the Nix daemon or /etc/nix/nix.conf.

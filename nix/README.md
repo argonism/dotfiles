@@ -4,9 +4,20 @@ This directory manages macOS settings with nix-darwin. Homebrew packages and
 dotfiles remain managed by the existing mitamae recipes, so the two systems do
 not compete over the same files.
 
-## Validate
+## Local configuration
 
-The explicit `path:` reference also works before these new files are committed:
+Create the machine-local configuration before evaluating the flake:
+
+```sh
+cd ~/Project/dotfiles/nix
+cp local.nix.example local.nix
+```
+
+Set `username` in `local.nix` to the existing macOS account name. This file is
+excluded from Git so each Mac can use its own account. Keep using the explicit
+`path:.` flake reference so the ignored local file is included in evaluation.
+
+## Validate
 
 ```sh
 cd ~/Project/dotfiles/nix
