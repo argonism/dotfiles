@@ -1,7 +1,7 @@
 dotfile '.config/nvim'
 dotfile '.config/karabiner'
 dotfile '.config/sheldon'
-dotfile '.config/herdr'
+dotfile '.config/herdr/config.toml'
 dotfile '.gitconfig'
 dotfile '.gitignore'
 dotfile '.peco'
