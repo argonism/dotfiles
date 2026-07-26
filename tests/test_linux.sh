@@ -18,6 +18,7 @@ test_command_exists "curl"
 test_command_exists "fzf"
 test_command_exists "git"
 test_command_exists "tmux"
+test_command_exists "${HOME}/.local/bin/tree-sitter"
 test_command_exists "xclip"
 
 if [ $FAILED_COUNT -gt 0 ]; then

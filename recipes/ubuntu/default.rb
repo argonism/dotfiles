@@ -34,6 +34,15 @@ execute "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
     not_if 'which rustc'
 end
 
+# Ubuntu 24.04 の apt 版は古いため、公式リリースのビルド済みバイナリを導入する。
+github_binary 'tree-sitter' do
+    repository 'tree-sitter/tree-sitter'
+    version 'v0.26.11'
+    archive 'tree-sitter-cli-linux-x64.zip'
+    binary_path 'tree-sitter'
+    bin_dir "#{ENV['HOME']}/.local/bin"
+end
+
 # Sheldon
 execute "curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin" do
     not_if "which sheldon"
