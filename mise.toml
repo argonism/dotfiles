@@ -1,4 +1,4 @@
 [tools]
 gcloud = "latest"
-node = "22"
+node = "22.23.1"
 pnpm = "9"
