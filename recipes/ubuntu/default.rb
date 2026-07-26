@@ -1,6 +1,7 @@
 dotfile '.config/nvim'
 dotfile '.config/karabiner'
 dotfile '.config/sheldon'
+dotfile '.config/herdr/config.toml'
 dotfile '.gitconfig'
 dotfile '.gitignore'
 dotfile '.peco'
@@ -31,17 +32,26 @@ end
 
 # rustup
 execute "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y" do
-    not_if 'which rustc'
+    not_if 'test -x "$HOME/.cargo/bin/rustc"'
+end
+
+# Ubuntu 24.04 の apt 版は古いため、公式リリースのビルド済みバイナリを導入する。
+github_binary 'tree-sitter' do
+    repository 'tree-sitter/tree-sitter'
+    version 'v0.26.11'
+    archive 'tree-sitter-cli-linux-x64.zip'
+    binary_path 'tree-sitter'
+    bin_dir "#{ENV['HOME']}/.local/bin"
 end
 
 # Sheldon
 execute "curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin" do
-    not_if "which sheldon"
+    not_if 'test -x "$HOME/.local/bin/sheldon"'
 end
 
 # atuin
 execute "curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh" do
-    not_if "which atuin"
+    not_if 'test -x "$HOME/.atuin/bin/atuin"'
 end
 
 include_recipe 'python'

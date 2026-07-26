@@ -1,4 +1,5 @@
 bin/mitamae*
+.nvimlog
 *.swp
 config/.zsh/bundle/
 

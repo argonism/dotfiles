@@ -22,9 +22,10 @@ define :dotfile do
   end
 end
 
-define :github_binary, version: nil, repository: nil, archive: nil, binary_path: nil do
+define :github_binary, version: nil, repository: nil, archive: nil, binary_path: nil, bin_dir: nil do
   cmd = params[:name]
-  bin_path = "#{ENV['HOME']}/bin/#{cmd}"
+  bin_dir = params[:bin_dir] || "#{ENV['HOME']}/bin"
+  bin_path = "#{bin_dir}/#{cmd}"
   archive = params[:archive]
   url = "https://github.com/#{params[:repository]}/releases/download/#{params[:version]}/#{archive}"
 
@@ -39,7 +40,7 @@ define :github_binary, version: nil, repository: nil, archive: nil, binary_path:
     raise "unexpected ext archive: #{archive}"
   end
 
-  directory "#{ENV['HOME']}/bin" do
+  directory bin_dir do
     owner node[:user]
   end
   execute "curl -fSL -o /tmp/#{archive} #{url}" do
