@@ -2,6 +2,8 @@
 typeset -A OP_ENVS=(
   wm  uy633pb2ehelmnqh3wdlaiqwsq
   fronteo kthc5cwudibgpqyjdido2yzjvu
+  be a4mh3agpwdcnduckytn6qkgdcq
+  gi rae3lml4z76lmubyfcqu33237q
 )
 
 # op run --environment のラッパー: `openv dev printenv`

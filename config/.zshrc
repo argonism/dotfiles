@@ -2,12 +2,12 @@ bindkey -v
 
 source ~/.zsh/lib/aliases.zsh
 source ~/.zsh/lib/functions.zsh
-source ~/.zsh/lib/1password-envs.zsh
 
 # git autocompletion
 fpath=(~/.zsh/fpath $fpath)
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
 autoload -Uz compinit && compinit
+source ~/.zsh/lib/1password-envs.zsh
 
 # Environment-local configurations
 if [[ -f ~/.zshrc.local ]]; then source ~/.zshrc.local; fi
