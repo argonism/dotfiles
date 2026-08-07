@@ -251,17 +251,24 @@ return {
     config = function()
       require("glow").setup({
         border = "rounded",
+        -- 組み込み style は gruvbox-light の端末色と相性が悪いため、
+        -- 本文とコードブロックを明るい背景向けに調整した style を使う。
+        style = vim.fn.stdpath("config") .. "/glow-gruvbox-light.json",
         width_ratio = 0.85,
         height_ratio = 0.85,
       })
       -- glow.nvim は vim.loop.spawn(パイプ=非TTY)で glow を起動する glow 1.5.1 時代の
       -- 設計のままで、glow 2.x は非TTY 出力だと色を全て落とすため素のままでは無色になる。
-      -- setup が定義した Glow コマンドを同一シグネチャで上書きし、実行中のみ強制カラーにする。
+      -- setup が定義した Glow コマンドを同一シグネチャで上書きし、実行中のみ NO_COLOR を
+      -- 解除してカラー出力を強制する。
       vim.api.nvim_create_user_command("Glow", function(opts)
+        local prev_no_color = vim.env.NO_COLOR
         local prev_force, prev_colorterm = vim.env.CLICOLOR_FORCE, vim.env.COLORTERM
+        vim.env.NO_COLOR = nil
         vim.env.CLICOLOR_FORCE = "1"
         vim.env.COLORTERM = "truecolor"
         require("glow").execute(opts)
+        vim.env.NO_COLOR = prev_no_color
         vim.env.CLICOLOR_FORCE = prev_force
         vim.env.COLORTERM = prev_colorterm
       end, { complete = "file", nargs = "?", bang = true })
