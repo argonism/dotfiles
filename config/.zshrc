@@ -33,6 +33,6 @@ export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
 
-. "$HOME/.atuin/bin/env"
-
-eval "$(atuin init zsh)"
+if command -v atuin >/dev/null 2>&1; then
+  eval "$(atuin init zsh --disable-up-arrow)"
+fi
