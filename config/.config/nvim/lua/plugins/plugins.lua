@@ -264,13 +264,29 @@ return {
       vim.api.nvim_create_user_command("Glow", function(opts)
         local prev_no_color = vim.env.NO_COLOR
         local prev_force, prev_colorterm = vim.env.CLICOLOR_FORCE, vim.env.COLORTERM
+        local prev_terminal_colors = {
+          [0] = vim.g.terminal_color_0,
+          [8] = vim.g.terminal_color_8,
+          [11] = vim.g.terminal_color_11,
+        }
         vim.env.NO_COLOR = nil
         vim.env.CLICOLOR_FORCE = "1"
         vim.env.COLORTERM = "truecolor"
-        require("glow").execute(opts)
+        -- Glow's non-TTY output reduces colors to ANSI. Gruvbox Light maps ANSI black
+        -- to its light background, so give this preview terminal an explicit palette.
+        vim.g.terminal_color_0 = "#282828"
+        vim.g.terminal_color_8 = "#665c54"
+        vim.g.terminal_color_11 = "#d5c4a1"
+        local ok, err = pcall(require("glow").execute, opts)
         vim.env.NO_COLOR = prev_no_color
         vim.env.CLICOLOR_FORCE = prev_force
         vim.env.COLORTERM = prev_colorterm
+        vim.g.terminal_color_0 = prev_terminal_colors[0]
+        vim.g.terminal_color_8 = prev_terminal_colors[8]
+        vim.g.terminal_color_11 = prev_terminal_colors[11]
+        if not ok then
+          error(err)
+        end
       end, { complete = "file", nargs = "?", bang = true })
     end,
   },
